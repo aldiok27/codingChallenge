@@ -1,0 +1,26 @@
+- if tasks.empty?
+  %span.text-warning There are no tasks!
+- else
+  %table.table.table-hover.table-bordered
+    %thead
+      %tr
+        %th Title
+        %th Note
+        %th Due Date
+        %th Priority
+        %th Status
+        %th Aksi
+    %tbody
+      - tasks.each do |task|
+        %tr
+          %td
+            %strong= task.title
+          %td.text-info= task.note
+          %td.text-success= task.completed
+          %td.text-info= task.prioritas
+          %td.text-success= task.status
+          %td
+            = link_to task_path(task), remote: true, method: :delete, data: {confirm: "Are you sure you want to delete task #{task.title}?"} do
+              %i.icon-remove
+            = link_to edit_task_path(task), remote: true do
+              %i.icon-edit

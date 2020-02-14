@@ -1,0 +1,26 @@
+/ .container
+/   - if @tasks.empty?
+/     %span.text-warning There are no tasks!
+/   - else
+/     %table.table.table-hover.table-bordered
+/       %thead
+/         %tr
+/           %th Title
+/           %th Note
+/           %th Due Date
+/           %th Priority
+/           %th Status
+/       %tbody
+/         - @tasks.each do |task|
+/           %tr
+/             %td
+/               %strong= task.title
+/             %td.text-info= task.note
+/             %td.text-success= task.completed
+/             %td.text-info= task.prioritas
+/             %td.text-success= task.status
+/ #modal.modal.fade
+
+#task-list.container
+  = render partial: 'tasks/task_list', locals: {tasks: @tasks}
+#modal.modal.fade
