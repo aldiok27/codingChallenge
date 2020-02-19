@@ -1,6 +1,24 @@
 # README
-Cara Menjalankan di local pc/laptop
 
-* Install Ruby version 2.3.3 dan Rails Version 5.0.0
-* jalankan gem install bundler di command
-* jalankan rails server
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...

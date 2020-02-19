@@ -8,4 +8,11 @@ class ApplicationController < ActionController::Base
 	def layout_by_controller
 	  devise_controller? ? 'devise' : 'application'
 	end
+	
+  def sort_column
+    Task.column_names.include?(params[:sort]) ? params[:sort] : "title"
+  end
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 end

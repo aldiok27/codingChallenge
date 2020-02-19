@@ -1,26 +1,58 @@
 - if tasks.empty?
-  %span.text-warning There are no tasks!
+  %span.text-warning Tidak Ada task!
 - else
+  / -if datetime = DateTime.now  => Sun, 26 Oct 2014 21:00:00
+
+  /     datetime.today? # => true
+  /     datetime.to_date.past? # => false (only based on date)
+  /     datetime.to_date.future? # => false  (only based on date)
+
+  /     datetime.to_date == Date.tomorrow # => false
+  /     datetime.to_date == Date.yesterday # => false
   %table.table.table-hover.table-bordered
     %thead
       %tr
+        %th Warning
         %th Title
-        %th= sortable 'note'
-        %th= sortable 'completed'
-        %th= sortable 'prioritas'
-        %th Status
+        %th= sortable 'note', 'Deskripsi'
+        %th= sortable 'completed', 'Due Date'
+        %th= sortable 'prioritas', 'Prioritas'
+        / %th Status
         %th Aksi
     %tbody
       - tasks.each do |task|
         %tr
+          -if task.status == 'selesai'
+            %td
+              %i.icon-ok
+          -else
+            -if task.completed.to_date.today?
+              %td
+                Tugas harus selesai hari ini
+            -else
+              %td
+                %i.icon-remove
           %td
             %strong= task.title
-          %td.text-info= task.note
-          %td.text-success= task.completed
-          %td.text-info= task.prioritas
-          %td.text-success= task.status
+          %td= task.note
+          %td= task.completed
+          %td= task.prioritas
+          / %td= task.status
           %td
-            = link_to task_path(task), remote: true, method: :delete, data: {confirm: "Yakin Hapus #{task.title}?"} do
-              %i.icon-remove
-            = link_to edit_task_path(task), remote: true do
-              %i.icon-edit
+            / = link_to task_path(task), remote: true, method: :delete, data: {confirm: "Yakin Hapus #{task.title}?"} do
+            /   %i.icon-remove
+            / = link_to edit_task_path(task), remote: true do
+            /   %i.icon-check
+            = link_to 'tugas selesai', remote: true, data: {confirm: "#{task.title} Sudah Selesai ?? "} do
+              %i.icon-check
+          / %td
+          /   -if task.completed.today?
+          /     .alert
+          /       %button.close{"data-dismiss" => "alert", :type => "button"} ×
+          /       %strong Warning!
+          /       Santuy
+          /   -else
+          /     .alert
+          /       %button.close{"data-dismiss" => "alert", :type => "button"} ×
+          /       %strong Warning!
+          /       Ada Tugas yang harus diselesaikan hari ini
