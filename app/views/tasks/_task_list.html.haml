@@ -38,21 +38,13 @@
           %td= task.completed
           %td= task.prioritas
           / %td= task.status
-          %td
-            / = link_to task_path(task), remote: true, method: :delete, data: {confirm: "Yakin Hapus #{task.title}?"} do
-            /   %i.icon-remove
-            / = link_to edit_task_path(task), remote: true do
-            /   %i.icon-check
-            = link_to 'tugas selesai', remote: true, data: {confirm: "#{task.title} Sudah Selesai ?? "} do
-              %i.icon-check
-          / %td
-          /   -if task.completed.today?
-          /     .alert
-          /       %button.close{"data-dismiss" => "alert", :type => "button"} ×
-          /       %strong Warning!
-          /       Santuy
-          /   -else
-          /     .alert
-          /       %button.close{"data-dismiss" => "alert", :type => "button"} ×
-          /       %strong Warning!
-          /       Ada Tugas yang harus diselesaikan hari ini
+          -if task.status == 'selesai'
+            %td -
+          -else
+            %td
+              / = link_to task_path(task), remote: true, method: :delete, data: {confirm: "Yakin Hapus #{task.title}?"} do
+              /   %i.icon-remove
+              / = link_to edit_task_path(task), remote: true do
+              /   %i.icon-check
+              = link_to task_path(task), remote: true,method: :put, data: {confirm: "#{task.title} Sudah Selesai ?? "} do
+                %i.icon-check

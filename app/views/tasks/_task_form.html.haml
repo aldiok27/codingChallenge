@@ -4,8 +4,8 @@
 = simple_form_for task, class: 'clearfix', remote: true do |f|
   .modal-body
     = f.input :title
-    = f.input :note
-    = f.input :completed, as: :string, input_html: { class: 'datepicker', value: task.completed.present? ? localize(task.completed, format: '%d/%m/%Y') : nil }
+    = f.input :note , :label => "Deskripsi"
+    = f.input :completed, as: :string, input_html: { class: 'datepicker', value: task.completed.present? ? localize(task.completed, format: '%d/%m/%Y') : nil } , :label => "Due Date"
     = f.select :prioritas, options_for_select([['Major', 'Major'], ['Minor', 'Minor']], params[:prioritas])
     = f.hidden_field :status, value: 'belum selesai'
   .modal-footer

@@ -10,6 +10,12 @@ class TasksController < ApplicationController
 		authorize! :create, @task
 	  save_task
 	end
+	def update
+	  @task = Task.find(params[:id])
+	  @task.update_attribute(:status, 'selesai')
+ 		authorize! :update, @task
+	  save_task
+	end
  #  def destroy
 	#   @task = Task.find(params[:id])
  #  	authorize! :destroy, @task
