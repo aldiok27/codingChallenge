@@ -5,9 +5,9 @@
     %thead
       %tr
         %th Title
-        %th Note
-        %th Due Date
-        %th Priority
+        %th= sortable 'note'
+        %th= sortable 'completed'
+        %th= sortable 'prioritas'
         %th Status
         %th Aksi
     %tbody
@@ -20,7 +20,7 @@
           %td.text-info= task.prioritas
           %td.text-success= task.status
           %td
-            = link_to task_path(task), remote: true, method: :delete, data: {confirm: "Are you sure you want to delete task #{task.title}?"} do
+            = link_to task_path(task), remote: true, method: :delete, data: {confirm: "Yakin Hapus #{task.title}?"} do
               %i.icon-remove
             = link_to edit_task_path(task), remote: true do
               %i.icon-edit

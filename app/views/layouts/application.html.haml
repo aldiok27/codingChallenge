@@ -12,9 +12,9 @@
           Tugas
         %p
           Selamat Datang Di Aplikasi Tugas
-        = link_to 'Input Tugas', new_task_path, class: 'btn btn-danger', remote: true
         .text-center
           %strong= current_user.email
         .text-center
           = link_to 'logout', destroy_user_session_path, method: :delete
+        = link_to 'Input Tugas', new_task_path, class: 'btn btn-danger', remote: true
     = yield
